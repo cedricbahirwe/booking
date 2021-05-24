@@ -14,10 +14,10 @@ struct GridStack<Content: View>: View {
     let content: (Int, Int) -> Content
     var body: some View {
         VStack {
-            ForEach(0 ..< self.rows) { row in
+            ForEach(0 ..< rows) { row in
                 HStack {
-                    ForEach(0 ..<  self.columns) { column in
-                        self.content(row, column)
+                    ForEach(0 ..<  columns) { column in
+                        content(row, column)
                     }
                 }
             }

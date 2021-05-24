@@ -43,41 +43,38 @@ struct Menu: View {
     
     @State var tabBarButtons: [TabBarButton] = [TabBarButton(isSelected: true, image: "chart.bar.fill", color: .white, bgColor: Color(red: 0.427, green: 0.416, blue: 0.936)), TabBarButton(isSelected: false, image: "person.circle", color: .black, bgColor: .clear), TabBarButton(isSelected: false, image: "qrcode.viewfinder", color: .black, bgColor: .clear), TabBarButton(isSelected: false, image: "grid.circle", color: .black, bgColor: .clear)]
     
-    let purple = Color(red: 0.427, green: 0.416, blue: 0.936)
     var body: some View {
         GeometryReader { geo in
-            VStack {
-                Spacer()
-                    .frame(height: 60)
-                VStack(alignment: .leading, spacing:  10) {
+            VStack(spacing: 0) {
+                VStack(alignment: .leading) {
                     HStack {
                         HeaderButton(image: "list.bullet.indent", color: .black, bgColor: .clear)
                         Spacer()
                          HeaderButton(image: "bookmark", color: .black, bgColor: .clear)
                     }
-                    VStack(alignment: .leading,spacing: 20) {
+                    VStack(alignment: .leading,spacing: 5) {
                         Text("Resources")
                             .bold()
                             .font(.largeTitle)
                             .foregroundColor(.black)
                         
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 30)
-                                .fill(Color.white)
+            
                             HStack {
-                                Image("search")
+                                Image(systemName: "magnifyingglass")
                                     .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30)
+                                    .scaledToFit()
+                                    .frame(width: 20,height: 20)
                                 TextField("Search", text: .constant(""))
-                                    .padding(.vertical)
+                                    .padding(.vertical, 10)
                             }
                             .padding(.leading)
-                        }
+                            .background(Color(.systemBackground))
+                            .cornerRadius(30)
                     }
                 }
                 .padding()
                 
+                ScrollView {
                 VStack(alignment: .leading) {
                     HStack(alignment: .top) {
                         VStack(alignment: .leading, spacing:  10) {
@@ -98,32 +95,9 @@ struct Menu: View {
                     }
                     .padding(10)
                 }
-                
-                Spacer()
-//                    .frame(height: 80)
-//                HStack {
-////                     Spacer()
-//                    ForEach(self.tabBarButtons) { tabBarButton in
-//                        Spacer()
-//                        ButtonView(button: tabBarButton)
-//                        .allowsHitTesting(true)
-//                            .onTapGesture {
-////                                self.ta
-//
-//                                let index = self.tabBarButtons.firstIndex(of: tabBarButton)
-//                                print(index)
-//                                self.tabBarButtons[index!].bgColor = .red
-////                                tabBarButton.bgColor =
-////                                self.ta
-//                                print(self.tabBarButtons)
-//                        }
-//
-//                        Spacer()
-//                    }
-//                }
-                ButtonViews(buttons: self.$tabBarButtons.animation())
-                Spacer()
-                    .frame(height: 40)
+                }
+                ButtonViews(buttons: $tabBarButtons.animation())
+                    .padding(.vertical, 5)
             }
             
         }
