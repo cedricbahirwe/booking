@@ -12,52 +12,54 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geo in
             VStack(alignment: .leading) {
-    //            Text("Hello, World!")
                 Image("logo")
-                .resizable()
-                    .frame(minWidth: 0, idealWidth: geo.size.width, maxWidth: geo.size.width, minHeight: 200, idealHeight: geo.size.height / 1.8, maxHeight: geo.size.height / 1.8)
-                
-                
-                Text("Learn")
-                    .font(.system(size: 65, weight: .bold, design: .rounded))
-                    .padding(.leading, 50)
-                    .foregroundColor(Color.black)
-                
-                
-                Text("The beautiful thing about learning is that nobody can take it away from you.")
-                    .font(.system(size: 22, weight: .regular, design: .default))
-                    .padding(.horizontal, 35)
-                    .padding()
-                    .foregroundColor(Color.black)
-                
-                HStack {
-                    Button(action: {
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: .infinity, minHeight: 200, maxHeight: geo.size.height / 1.8)
+                    .clipped()
+                    .ignoresSafeArea(.all, edges: .top)
+
                     
-                    }) {
-                        Text("Get started")
-                            .padding()
-                            .padding(.horizontal, 50)
-                            .padding(.vertical, 5)
-                            .background(Color(red: 0.022, green: 0.022, blue: 0.022))
-                            .font(.system(size: 20, weight: .semibold, design: .default))
-                            .foregroundColor(Color.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 30))
+                
+                VStack(alignment: .leading) {
+                    Group {
+                        Text("Learn")
+                            .font(.system(size: 65, weight: .bold, design: .rounded))
+                        
+                        
+                        Text("The beautiful thing about learning is that nobody can take it away from you.")
+                            .font(.system(size: 22, weight: .regular, design: .default))
                     }
+                    .padding(.vertical, 5)
                     
-                    Spacer()
-                        .frame(width: 40)
-                    
-                    Button(action: {}) {
-                        Image(systemName: "play.rectangle.fill")
-                            .resizable()
-                            .imageScale(.large)
-                            .frame(width: 35, height: 25)
-                            .foregroundColor(Color.purple)
+                    HStack {
+                        Button(action: {
+                            
+                        }) {
+                            Text("Get started")
+                                .padding(.horizontal, 50)
+                                .padding(.vertical, 12)
+                                .background(Color.primary)
+                                .font(.system(size: 20, weight: .semibold, design: .default))
+                                .foregroundColor(Color(.systemBackground))
+                                .cornerRadius(30)
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {}) {
+                            Image(systemName: "play.rectangle.fill")
+                                .resizable()
+                                .imageScale(.large)
+                                .frame(width: 35, height: 25)
+                                .foregroundColor(Color.red)
+                        }
                     }
                 }
-                .frame(width: geo.size.width)
+                .padding(.horizontal, 20)
                 
             }
+            
         }
     }
 }
@@ -65,6 +67,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environment(\.colorScheme, .dark)
     }
 }

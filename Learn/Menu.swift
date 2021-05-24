@@ -29,13 +29,13 @@ struct Menu: View {
     
     @State var hasImage = !false
     
-    var leftStackResources = [
+    private let leftStackResources = [
         Resource(title: "Design system", image: "folder.circle.fill", number: 25, getStarted: false),
         Resource(title: "Podcasts", image: "" , number: 150, getStarted: false),
         Resource(title: "Gradient Tools", image: "archivebox.fill", number: 45, getStarted: true)
     ]
     
-    var rightStackResources = [
+    private let rightStackResources = [
         Resource(title: "News", image: "" , number: 150, getStarted: false),
         Resource(title: "Design Books", image: "book.circle.fill", number: 260, getStarted: true),
         Resource(title: "Color tools", image: "book.fill", number: 32, getStarted: false)
@@ -78,17 +78,17 @@ struct Menu: View {
                 VStack(alignment: .leading) {
                     HStack(alignment: .top) {
                         VStack(alignment: .leading, spacing:  10) {
-                            ForEach(self.leftStackResources) { resource in
+                            ForEach(leftStackResources) { resource in
                                 CardView(title: resource.title, image: resource.image, number: resource.number, getSarted: resource.getStarted)
-                                    .frame(height: self.cardHeight(for: resource))
+                                    .frame(height: cardHeight(for: resource))
                             }
                         }
                         
                         Spacer()
                         VStack(alignment: .trailing, spacing: 10) {
-                            ForEach(self.rightStackResources) { resource in
+                            ForEach(rightStackResources) { resource in
                                 CardView(title: resource.title, image: resource.image, number: resource.number, getSarted: resource.getStarted)
-                                    .frame(height: self.cardHeight(for: resource))
+                                    .frame(height: cardHeight(for: resource))
                             }
                         }
                         
